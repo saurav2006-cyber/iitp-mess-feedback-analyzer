@@ -1,2 +1,2 @@
-# iitp-mess-feedback-analyzer
-FIRST PROJECT :-Analyzing hostel mess feedback at IIT Patna using Data Analytics and ML
+# -mess-feedback-analyzer
+FIRST PROJECT :-Analyzing hostel mess feedback at Collage using Data Analytics and ML
