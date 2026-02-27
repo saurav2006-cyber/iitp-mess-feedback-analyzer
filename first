@@ -1,0 +1,40 @@
+Students at Collage often complain about mess food but no one tracks the data properly. This project analyzes mess feedback to find patterns and suggest improvements.
+
+ 🎯 What This Project Does
+- Collects feedback data from students (ratings + comments)
+- Analyzes food quality trends across different hostels
+- Predicts which food items get better ratings
+- Uses AI to summarize feedback
+
+ 📊 Sample Data
+I collected feedback from 15 students across 3 hostels:
+- Hostel A: 5 responses
+- Hostel B: 5 responses  
+- Hostel C: 5 responses
+
+ 🔧 How I Built It
+1. Created Google Form for feedback collection
+2. Used Python (Pandas) to clean and analyze data
+3. Made charts to visualize trends
+4. Built ML model to predict ratings
+5. Used prompt engineering to summarize comments
+
+ 📈 Key Findings
+- Biryani gets 4.2/5 rating (most popular)
+- Mess C needs improvement in cleanliness (2.8/5)
+- Students want more breakfast variety
+
+ 🚀 How to Run This Project
+1. Clone this repo
+2. Install requirements: `pip install pandas matplotlib seaborn scikit-learn`
+3. Run `python analyze.py`
+4. Check `output/` folder for results
+
+ 📝 What I Learned
+- Real data is messy (had to clean a lot)
+- ML models need more data to be accurate
+- Prompt engineering helps summarize text quickly
+
+🙋‍♂️ About Me
+I'm Saurav Kumar, 2nd year CSE student at IIT Patna. Interested in Data Analytics, ML and solving real problems on campus
+
