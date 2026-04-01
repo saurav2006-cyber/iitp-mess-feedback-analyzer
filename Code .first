@@ -1,0 +1,119 @@
+# ============================================
+# AI Hostel Feedback Analysis System
+# Author: Saurav Kumar
+# ============================================
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+from sklearn.linear_model import LinearRegression
+
+# Create output folder if not exists
+os.makedirs("output", exist_ok=True)
+
+# --------------------------------------------
+# STEP 1: Load Dataset
+# --------------------------------------------
+print("Loading data...")
+
+df = pd.read_csv("data/feedback.csv")
+
+print("\nFirst 5 rows:")
+print(df.head())
+
+# --------------------------------------------
+# STEP 2: Data Cleaning
+# --------------------------------------------
+print("\nCleaning data...")
+
+# Remove missing values
+df = df.dropna()
+
+# Convert ratings to numeric (safety)
+df["Rating"] = pd.to_numeric(df["Rating"])
+df["Cleanliness"] = pd.to_numeric(df["Cleanliness"])
+
+print("Data cleaned successfully!")
+
+# --------------------------------------------
+# STEP 3: Data Analysis
+# --------------------------------------------
+
+# Average rating by food
+food_rating = df.groupby("Food")["Rating"].mean()
+
+# Average cleanliness by hostel
+clean_rating = df.groupby("Hostel")["Cleanliness"].mean()
+
+print("\nAverage Food Ratings:")
+print(food_rating)
+
+print("\nCleanliness Ratings:")
+print(clean_rating)
+
+# --------------------------------------------
+# STEP 4: Visualization
+# --------------------------------------------
+
+print("\nGenerating charts...")
+
+# Food rating chart
+plt.figure()
+food_rating.plot(kind="bar")
+plt.title("Average Food Rating")
+plt.xlabel("Food")
+plt.ylabel("Rating")
+plt.savefig("output/food_rating.png")
+plt.close()
+
+# Cleanliness chart
+plt.figure()
+clean_rating.plot(kind="bar")
+plt.title("Hostel Cleanliness")
+plt.xlabel("Hostel")
+plt.ylabel("Cleanliness")
+plt.savefig("output/cleanliness.png")
+plt.close()
+
+print("Charts saved in output/ folder!")
+
+# --------------------------------------------
+# STEP 5: Machine Learning Model
+# --------------------------------------------
+
+print("\nTraining ML model...")
+
+X = df[["Cleanliness"]]   # input feature
+y = df["Rating"]          # target
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Prediction example
+prediction = model.predict([[3]])
+
+print(f"Predicted Rating for Cleanliness=3: {prediction[0]:.2f}")
+
+# --------------------------------------------
+# STEP 6: AI-Style Summary (Rule-Based)
+# --------------------------------------------
+
+print("\nGenerating Summary...")
+
+best_food = food_rating.idxmax()
+worst_hostel = clean_rating.idxmin()
+
+print("\n----- FINAL INSIGHTS -----")
+print(f"Most popular food: {best_food}")
+print(f"Hostel needing improvement: {worst_hostel}")
+
+# Simple text analysis
+comments = " ".join(df["Comment"]).lower()
+
+if "dirty" in comments or "bad" in comments:
+    print("Students are concerned about cleanliness")
+
+if "variety" in comments or "more" in comments:
+    print("Students want more food variety")
+
+print("\nAnalysis Completed Successfully!")
