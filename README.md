@@ -1,3 +1,3 @@
-# -mess-feedback-analyzer
+mess-feedback-analyzer
 
-hostel-feedback-ai/
+hostel-feedback-ai
